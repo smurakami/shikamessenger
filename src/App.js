@@ -45,7 +45,7 @@ const Header = props => {
   const {name} = props;
 
   const onClick = () => {
-    window.localStorage.setItem('name', null);
+    window.localStorage.removeItem('name');
     global.app.setState({name: null});
   }
 
@@ -81,6 +81,9 @@ class NameForm extends Component {
     return (
       <div className="NameForm" style={style}>
         <div className="container">
+          <div className="logo">
+            <img src="/images/logo.jpg" alt=""/>
+          </div>
           <div className="title">
             お名前を入力してください
           </div>
@@ -88,7 +91,7 @@ class NameForm extends Component {
             <input type="text" ref={el => this.input = el}/>
           </div>
           <div className="row">
-            <div className="btn col s12" onClick={this.onClick.bind(this)}>
+            <div className="btn col s12 blue lighten-1" onClick={this.onClick.bind(this)}>
               ログイン
             </div>
           </div>

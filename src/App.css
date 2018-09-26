@@ -32,6 +32,16 @@ body {
   background-color: white;
 }
 
+.NameForm .title {
+  color: #7f8c8d;
+}
+
+.NameForm img {
+  width: 80%;
+  height: auto;
+  margin-bottom: 40px;
+}
+
 .NameForm input {
   text-align: center;
 }
