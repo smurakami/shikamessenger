@@ -111,7 +111,10 @@ class Messages extends Component {
   }
 
   scrollToBottom() {
-    this.messagesEnd.scrollIntoView({ behavior: 'smooth' })
+    const {messages} = this.props;
+    // this.messagesEnd.scrollIntoView({ behavior: 'smooth' })
+    // window.scrollTo(0, 0);
+    this.body.scrollTop = messages.length * 1000;
   }
 
   render() {
@@ -193,12 +196,14 @@ class TextArea extends Component {
   }
 
   send() {
-    global.socket.send({
-      type: 'text',
-      name: global.app.state.name,
-      value: this.state.text,
-    })
-    this.setState({text: ''});
+    if (this.state.text && this.state.text.length > 0) {
+      global.socket.send({
+        type: 'text',
+        name: global.app.state.name,
+        value: this.state.text,
+      })
+      this.setState({text: ''});
+    }
   }
 
   render() {
