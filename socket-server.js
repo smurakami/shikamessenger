@@ -2,6 +2,7 @@ var server = require('ws').Server;
 var wss = new server({port:5031});
 
 var app = {};
+var messages = [];
 
 wss.on('connection',function(ws){
   console.log(`client connected: ${wss.clients.size}`)
@@ -10,6 +11,9 @@ wss.on('connection',function(ws){
     console.log("Received: " + message);
     const data = JSON.parse(message);
     console.log(data);
+
+    messages.push(data);
+    console.log(messages.length);
 
     // そのまま配信
     wss.clients.forEach(ws => {
@@ -20,5 +24,10 @@ wss.on('connection',function(ws){
   ws.on('close',function(){
     console.log('connection closed');
   });
+
+  ws.send(JSON.stringify({
+    is_reload: true,
+    data: messages.slice(messages.length - 10),
+  }))
 });
 

@@ -3,7 +3,6 @@ import './App.css';
 import Socket from './socket'
 import stamps from './stamps'
 
-const dummyMessages = [{"type":"text","name":"","value":"hogehoge"},{"type":"text","name":"","value":"hogehoge"},{"type":"text","name":"","value":"hogehoge"},{"type":"text","name":"","value":"hello"}];
 
 class App extends Component {
   constructor() {
@@ -11,27 +10,91 @@ class App extends Component {
     global.socket = new Socket();
     global.socket.callback = this.onMessage.bind(this);
     global.app = this;
-    global.app.name = 'hogehoge'
     this.state = {
-      // messages: [],
-      messages: dummyMessages,
+      name: window.localStorage.getItem('name'),
+      messages: [],
     }
   }
 
   onMessage(data) {
-    const {messages} = this.state;
-    messages.push(data);
+    var {messages} = this.state;
+    if (data.is_reload) {
+      messages = data.data;
+      console.log(data);
+    } else {
+      messages.push(data);
+    }
+
     this.setState({messages: messages});
   }
 
   render() {
     return (
       <div className="App">
+        <NameForm name={this.state.name}></NameForm>
+        <Header name={this.state.name} />
         <Messages messages={this.state.messages}></Messages>
         <TextArea></TextArea>
         <Stamps></Stamps>
       </div>
     );
+  }
+}
+
+const Header = props => {
+  const {name} = props;
+
+  const onClick = () => {
+    window.localStorage.setItem('name', null);
+    global.app.setState({name: null});
+  }
+
+  return (
+    <div className="Header">
+      <div className="row">
+        <div className="name col s10">
+          {name}
+        </div>
+        <div className="btn col s2 red darken-4" onClick={onClick}>LOGOUT</div>
+      </div>
+    </div>
+    )
+}
+
+class NameForm extends Component {
+  onClick() {
+    const name = this.input.value;
+    window.localStorage.setItem("name", name);
+    global.app.setState({name: name});
+  }
+
+  render() {
+    const {name} = this.props;
+
+    var style = {};
+    if (name) {
+      style.display = 'None';
+    } else {
+      console.log('hoge')
+    }
+
+    return (
+      <div className="NameForm" style={style}>
+        <div className="container">
+          <div className="title">
+            お名前を入力してください
+          </div>
+          <div className="form">
+            <input type="text" ref={el => this.input = el}/>
+          </div>
+          <div className="row">
+            <div className="btn col s12" onClick={this.onClick.bind(this)}>
+              ログイン
+            </div>
+          </div>
+        </div>
+      </div>
+      )
   }
 }
 
@@ -70,23 +133,31 @@ class Messages extends Component {
 
 const Message = (props) => {
   const {message} = props;
+
+  var offset = '';
+  var mine = "";
+  if (message.name == global.app.state.name) {
+    offset = ' offset-s4';
+    mine = ' mine';
+  }
+
   var content;
   if (message.type == 'text') {
     content = (
-      <div className="text col s8">
+      <div className={"text col s8" + offset + mine}>
         {message.value}
       </div>
       );
   } else {
     content = (
-      <div className="stamp col s8">
+      <div className={"stamp col s8" + offset}>
         <img src={"images/stamps/" + message.value.name} alt=""/>
       </div>
       );
   }
   return (
     <div className="Message">
-      <div className="name">{global.app.name}</div>
+      <div className={'name' + mine}>{message.name}</div>
       <div className="row">
         {content}
       </div>
@@ -121,7 +192,7 @@ class TextArea extends Component {
   send() {
     global.socket.send({
       type: 'text',
-      name: global.app.name,
+      name: global.app.state.name,
       value: this.state.text,
     })
     this.setState({text: ''});
@@ -156,7 +227,7 @@ class Stamps extends Component {
     global.socket.send({
       type: 'stamp',
       value: stamp,
-      name: global.app.name,
+      name: global.app.state.name,
     });
   }
 
