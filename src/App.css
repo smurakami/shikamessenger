@@ -1,5 +1,5 @@
-.App {
-  text-align: center;
+body {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .App-logo {
@@ -20,6 +20,76 @@
 
 .App-intro {
   font-size: large;
+}
+
+.Messages {
+  padding: 32px 0;
+  overflow: scroll;
+  background-image: url('/images/message-background.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.Message {
+  margin-bottom: 12px;
+}
+
+.Message .name {
+  color: white;
+  font-size: 12px;
+  padding-left: 20px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.Message .row {
+  margin: 0;
+}
+
+.Message .text {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: white;
+  padding: 12px 20px;
+  border-radius: 24px; 
+}
+
+.Message .stamp img {
+  width: 100%;
+  height: auto;
+}
+
+.TextArea {
+  padding: 8px 0;
+}
+
+.Stamps {
+  overflow: scroll;
+}
+
+.Stamp img {
+  width: 100%;
+  height: auto;
+}
+
+.flex {
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-box;
+  display:-webkit-flexbox;
+  display:-moz-flexbox;
+  display:-ms-flexbox;
+  display:-webkit-flex;
+  display:-moz-flex;
+  display:-ms-flex;
+  display:flex;
+  -webkit-box-lines:multiple;
+  -moz-box-lines:multiple;
+  -webkit-flex-wrap:wrap;
+  -moz-flex-wrap:wrap;
+  -ms-flex-wrap:wrap;
+  flex-wrap:wrap;
+  flex-direction:row;
 }
 
 @keyframes App-logo-spin {
