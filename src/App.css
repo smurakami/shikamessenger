@@ -73,6 +73,7 @@ body {
 .Messages {
   padding: 32px 0;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   background-image: url('/images/message-background.jpg');
   background-size: cover;
   background-position: center;
@@ -124,8 +125,6 @@ body {
 }
 
 .Stamps {
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 
 .Stamp img {
