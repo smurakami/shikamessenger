@@ -27,7 +27,6 @@ wss.on('connection',function(ws){
 
   ws.send(JSON.stringify({
     is_reload: true,
-    data: messages.slice(messages.length - 10),
+    data: messages.slice(messages.length - 1000),
   }))
 });
-

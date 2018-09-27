@@ -2,6 +2,27 @@ body {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+html, body {
+  position: relative;
+  height: 100%;
+}
+
+.App, #root {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.App>.top {
+  overflow: hidden;
+  transition: height 0.2s 0s ease;
+}
+
+.App>.bottom {
+  overflow: hidden;
+}
+
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -71,7 +92,8 @@ body {
 }
 
 .Messages {
-  padding: 32px 0;
+  position: relative;
+  padding: 60px 0 8px;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   background-image: url('/images/message-background.jpg');

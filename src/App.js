@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       name: window.localStorage.getItem('name'),
       messages: [],
+      inputMode: false,
     }
   }
 
@@ -28,14 +29,41 @@ class App extends Component {
     this.setState({messages: messages});
   }
 
+  onTopPartClick() {
+    console.log('top');
+    this.setState({inputMode: false});
+  }
+
+  onBottomPartClick() {
+    console.log('bottom');
+    this.setState({inputMode: true});
+  }
+
   render() {
+    const topStyle = {
+      height: '60%',
+    };
+
+    const bottomStyle = {
+      height: '40%',
+    };
+
+    if (!this.state.inputMode) {
+      topStyle.height = 'calc(100% - 59px)';
+      bottomStyle.height = '59px';
+    }
+
     return (
       <div className="App">
         <NameForm name={this.state.name}></NameForm>
         <Header name={this.state.name} />
-        <Messages messages={this.state.messages}></Messages>
-        <TextArea></TextArea>
-        <Stamps></Stamps>
+        <div className="top" style={topStyle} onClick={e => this.onTopPartClick()}>
+          <Messages messages={this.state.messages}></Messages>
+        </div>
+        <div className="bottom" onClick={e => this.onBottomPartClick()} style={bottomStyle}>
+          <TextArea></TextArea>
+          <Stamps></Stamps>
+        </div>
       </div>
     );
   }
@@ -97,7 +125,7 @@ class NameForm extends Component {
           </div>
         </div>
       </div>
-      )
+    )
   }
 }
 
@@ -121,7 +149,7 @@ class Messages extends Component {
     const {messages} = this.props;
 
     const style = {
-      height: window.innerHeight * 0.6,
+      height: '100%',
     }
 
     return (
@@ -241,7 +269,8 @@ class Stamps extends Component {
 
   render () {
     const style = {
-      height: window.innerHeight * 0.4,
+      // height: 'calc(40% - 59px)',
+      height: 'calc(100% - 59px)',
     }
 
     return (
