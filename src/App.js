@@ -3,6 +3,8 @@ import './App.css';
 import Socket from './socket'
 import stamps from './stamps'
 
+console.log(stamps);
+
 
 class App extends Component {
   constructor() {
