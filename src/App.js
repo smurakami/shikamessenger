@@ -121,7 +121,7 @@ class NameForm extends Component {
             <input type="text" ref={el => this.input = el}/>
           </div>
           <div className="row">
-            <div className="btn col s12 blue lighten-1" onClick={this.onClick.bind(this)}>
+            <div className="login-button btn col s12 white" onClick={this.onClick.bind(this)}>
               ログイン
             </div>
           </div>
