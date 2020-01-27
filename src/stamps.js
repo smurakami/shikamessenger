@@ -1,5 +1,6 @@
 const names = [
   "mina_01_tsukuda.png",
+  "mina_01_2_tsukuda.png",
   "mina_02_utau.png",
   "mina_03_satou.png",
   "mina_04_higashi.png",
