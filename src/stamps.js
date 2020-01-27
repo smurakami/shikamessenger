@@ -1,14 +1,14 @@
 const names = [
-  "mina_01_tsukuda.jpg", 
-  "mina_02_utau.png", 
-  "mina_03_satou.png", 
-  "mina_04_higashi.png", 
-  "mina_05_ichikawa.png", 
-  "mina_06_kanayama.png", 
-  "mina_07_murakami.png", 
-  "mina_08_okawa1.png", 
-  "mina_09_okawa.png", 
-  "mina_10_urabe.png", 
+  "mina_01_tsukuda.png",
+  "mina_02_utau.png",
+  "mina_03_satou.png",
+  "mina_04_higashi.png",
+  "mina_05_ichikawa.png",
+  "mina_06_kanayama.png",
+  "mina_08_okawa1.png",
+  "mina_09_okawa.png",
+  "mina_07_murakami.png",
+  "mina_10_urabe.png",
 ];
 
 
