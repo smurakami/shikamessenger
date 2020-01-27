@@ -1,5 +1,5 @@
 var server = require('ws').Server;
-var wss = new server({port:5031});
+var wss = new server({port:5032});
 
 var app = {};
 var messages = [];

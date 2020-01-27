@@ -6,7 +6,7 @@ export default class Socket {
   }
 
   connect() {
-    const uri = "ws://" + window.location.hostname + ":5031"
+    const uri = "ws://" + window.location.hostname + ":5032"
     this.socket = new WebSocket(uri);
     this.socket.addEventListener('open', e => this.onOpen());
     this.socket.addEventListener('message', e => this.onMessage(JSON.parse(e.data)));
